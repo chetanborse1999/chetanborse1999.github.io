@@ -39,61 +39,58 @@ document.addEventListener('DOMContentLoaded', function() {
         modeToggle.textContent = currentMode === 'light' ? '☀️' : '🌙';
     }
 
-    // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+    const isMobileView = window.matchMedia('(max-width: 768px)').matches;
+
+    // Left panel section navigation: intro is shown by default, button picks one more section
+    const panelToggleBtn = document.getElementById('section-panel-toggle');
+    const sectionPanel = document.getElementById('section-panel');
+    const panelButtons = document.querySelectorAll('.section-nav-btn');
+    const allSections = document.querySelectorAll('main section');
+
+    function showIntroAnd(selectedId) {
+        allSections.forEach(section => {
+            if (section.id === 'intro' || section.id === selectedId) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
             }
         });
+    }
+
+    function showAllSections() {
+        allSections.forEach(section => {
+            section.style.display = 'block';
+        });
+    }
+
+    if (isMobileView) {
+        // Initial state on mobile: intro only
+        showIntroAnd('intro');
+    } else {
+        // Desktop remains unchanged
+        showAllSections();
+    }
+
+    if (isMobileView && panelToggleBtn && sectionPanel) {
+        panelToggleBtn.addEventListener('click', () => {
+            const isOpen = sectionPanel.classList.toggle('open');
+            panelToggleBtn.setAttribute('aria-expanded', String(isOpen));
+            sectionPanel.setAttribute('aria-hidden', String(!isOpen));
+        });
+    }
+
+    panelButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (!isMobileView) return;
+            const targetId = button.getAttribute('data-target');
+            if (!targetId) return;
+            showIntroAnd(targetId);
+            sectionPanel.classList.remove('open');
+            panelToggleBtn.setAttribute('aria-expanded', 'false');
+            sectionPanel.setAttribute('aria-hidden', 'true');
+            window.scrollTo(0, 0);
+        });
     });
-
-    // Scroll nudge effect on page load
-    function scrollNudge() {
-        const scrollDistance = 120; // pixels to scroll
-        const scrollDuration = 500; // duration in milliseconds
-        
-        // Scroll down
-        smoothScroll(scrollDistance, scrollDuration).then(() => {
-            // Immediately scroll back to top
-            smoothScroll(0, scrollDuration);
-        });
-    }
-
-    // Helper function for smooth scrolling
-    function smoothScroll(targetPosition, duration) {
-        return new Promise((resolve) => {
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            let start = null;
-
-            window.requestAnimationFrame(function step(timestamp) {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
-                const percentage = Math.min(progress / duration, 1);
-                
-                // Easing function for smooth motion
-                const easeInOutQuad = percentage < 0.5 
-                    ? 2 * percentage * percentage 
-                    : -1 + (4 - 2 * percentage) * percentage;
-                
-                window.scrollTo(0, startPosition + distance * easeInOutQuad);
-
-                if (progress < duration) {
-                    window.requestAnimationFrame(step);
-                } else {
-                    resolve();
-                }
-            });
-        });
-    }
-
-    // Trigger scroll nudge after page fully loads (delay for content to settle)
-    setTimeout(scrollNudge, 500);
 
     // Spotify widget collapse/expand functionality
     const spotifyWidget = document.getElementById('spotify-widget');
@@ -120,51 +117,51 @@ document.addEventListener('DOMContentLoaded', function() {
         spotifyCollapseBtn.textContent = spotifyWidget.classList.contains('collapsed') ? '+' : '−';
     }
 
+    if (isMobileView) {
+        spotifyWidget.classList.add('collapsed');
+    }
+
     // Initialize button text
     updateButtonText();
 
-    // Auto-collapse the widget after 4 seconds on page load
-    collapseTimeout = setTimeout(() => {
-        if (!mouseOverWidget) {
-            spotifyWidget.classList.add('collapsed');
-            updateButtonText();
-        }
-    }, 4000);
+    if (!isMobileView) {
+        // Auto-collapse the widget after 4 seconds on page load
+        collapseTimeout = setTimeout(() => {
+            if (!mouseOverWidget) {
+                spotifyWidget.classList.add('collapsed');
+                updateButtonText();
+            }
+        }, 4000);
 
-    // Mouse enter: pause collapse
-    spotifyWidget.addEventListener('mouseenter', () => {
-        mouseOverWidget = true;
-        clearTimeout(collapseTimeout);
-    });
+        // Mouse enter: pause collapse
+        spotifyWidget.addEventListener('mouseenter', () => {
+            mouseOverWidget = true;
+            clearTimeout(collapseTimeout);
+        });
 
-    // Mouse leave: resume collapse countdown
-    spotifyWidget.addEventListener('mouseleave', () => {
-        mouseOverWidget = false;
-        if (!spotifyWidget.classList.contains('collapsed')) {
-            setCollapseTimeout(2000);
-        }
-    });
+        // Mouse leave: resume collapse countdown
+        spotifyWidget.addEventListener('mouseleave', () => {
+            mouseOverWidget = false;
+            if (!spotifyWidget.classList.contains('collapsed')) {
+                setCollapseTimeout(2000);
+            }
+        });
+    }
 
     // Toggle collapse on header click
     spotifyHeader.addEventListener('click', () => {
-        clearTimeout(collapseTimeout);
         spotifyWidget.classList.toggle('collapsed');
         updateButtonText();
-        
-        // If widget is now expanded, auto-collapse after 2 seconds (if no mouse over)
-        if (!spotifyWidget.classList.contains('collapsed') && !mouseOverWidget) {
+        if (!isMobileView && !spotifyWidget.classList.contains('collapsed') && !mouseOverWidget) {
             setCollapseTimeout(2000);
         }
     });
 
     spotifyCollapseBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        clearTimeout(collapseTimeout);
         spotifyWidget.classList.toggle('collapsed');
         updateButtonText();
-        
-        // If widget is now expanded, auto-collapse after 2 seconds (if no mouse over)
-        if (!spotifyWidget.classList.contains('collapsed') && !mouseOverWidget) {
+        if (!isMobileView && !spotifyWidget.classList.contains('collapsed') && !mouseOverWidget) {
             setCollapseTimeout(2000);
         }
     });
@@ -189,5 +186,35 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update button text
             showMoreBtn.textContent = allProjectsVisible ? 'Show Less Projects' : 'Show More Projects';
         });
+    }
+
+    // Lazy-load research teaser video on explicit user click
+    const researchVideoTrigger = document.getElementById('research-video-trigger');
+    const researchVideoPlayer = document.getElementById('research-video-player');
+
+    if (researchVideoTrigger && researchVideoPlayer) {
+        researchVideoTrigger.addEventListener('click', function() {
+            const videoSrc = researchVideoTrigger.getAttribute('data-video-src');
+            if (!videoSrc) return;
+
+            const video = document.createElement('video');
+            video.width = 560;
+            video.height = 315;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.playsInline = true;
+            video.controls = true;
+            video.preload = 'metadata';
+
+            const source = document.createElement('source');
+            source.src = videoSrc;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+
+            researchVideoPlayer.innerHTML = '';
+            researchVideoPlayer.appendChild(video);
+            researchVideoTrigger.style.display = 'none';
+        }, { once: true });
     }
 });

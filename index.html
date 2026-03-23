@@ -26,6 +26,16 @@
         </nav>
     </header>
 
+    <button id="section-panel-toggle" class="section-panel-toggle" aria-expanded="false" aria-controls="section-panel">☰ Sections</button>
+    <aside id="section-panel" class="section-panel" aria-hidden="true">
+        <div class="section-panel-header">Explore Sections</div>
+        <button class="section-nav-btn" data-target="skills">Skills</button>
+        <button class="section-nav-btn" data-target="education">Education</button>
+        <button class="section-nav-btn" data-target="experience">Experience</button>
+        <button class="section-nav-btn" data-target="research">Research</button>
+        <button class="section-nav-btn" data-target="projects">Projects</button>
+    </aside>
+
     <!-- Floating Spotify Player -->
     <div id="spotify-widget" class="spotify-widget">
         <span id="play-prompt" class="play-prompt">Click to play 🎶<br></span>
@@ -195,12 +205,16 @@
                         <p><strong>Published:</strong> arXiv:2603.12185 [cs.RO], March 2026</p>
                         <p><strong>Abstract:</strong> Physics simulation for contact-rich robotics is often bottlenecked by contact resolution. We present ComFree-Sim, a GPU-parallelized analytical contact physics engine built on complementarity-free contact modeling. ComFree-Sim computes contact impulses in closed form via an impedance-style prediction-correction update in the dual cone of Coulomb friction, achieving near-linear scaling with contact density. The engine is implemented in Warp with a MuJoCo-compatible interface, demonstrating 2-3x higher throughput in dense contact scenes with comparable physical fidelity.</p>
                         <div class="research-video">
-                            <a href="https://irislab.tech/comfree-sim/" target="_blank" rel="noopener noreferrer" class="project-media-link">
-                                <video width="560" height="315" autoplay loop muted>
-                                    <source src="videos/comfree_teaser_sped_up_v2.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </a>
+                            <button
+                                id="research-video-trigger"
+                                class="research-video-trigger"
+                                type="button"
+                                data-video-src="videos/comfree_teaser_sped_up_v2.mp4"
+                                aria-label="Play research teaser video"
+                            >
+                                <span class="research-video-play-icon"><i class="fas fa-play"></i></span>
+                            </button>
+                            <div id="research-video-player" class="research-video-player"></div>
                         </div>
                     </div>
                     <!-- Add more research items as needed -->
