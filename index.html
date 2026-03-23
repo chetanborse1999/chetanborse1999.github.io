@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chetan Borse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1>CHETAN BORSE</h1>
+                <ul>
+                    <li><a href="#intro">Intro</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+                <button id="mode-toggle" class="nav-btn">☀️</button>
+                <button id="theme-cycle" class="nav-btn">🎨</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Floating Spotify Player -->
+    <div id="spotify-widget" class="spotify-widget">
+        <span id="play-prompt" class="play-prompt">Click to play 🎶<br></span>
+        <div class="spotify-widget-header" id="spotify-widget-header">
+            <span>🎵 Now Playing</span>
+            <button id="spotify-collapse-btn" class="spotify-collapse-btn">−</button>
+        </div>
+        <div class="spotify-widget-content" id="spotify-widget-content">
+            <iframe id="spotify-iframe" src="https://open.spotify.com/embed/playlist/29OulTJXxAycqLHrFMNLlX?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <main>
+        <div class="columns-container">
+            <div class="column left-column">
+                <section id="intro">
+                    <h2>Introduction</h2>
+                    <div class="intro-container">
+                        <div class="intro-top">
+                            <img src="images/photo.png" alt="Profile Photo" class="profile-photo">
+                            <div class="social-links-intro">
+                                <a href="https://linkedin.com/in/chetanborse1999" target="_blank" class="social-link">
+                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                </a>
+                                <a href="https://github.com/chetanborse1999" target="_blank" class="social-link">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                                <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&hl=en&user=rGBt9IkAAAAJ&authuser=1" target="_blank" class="social-link">
+                                    <i class="fas fa-book"></i> Google Scholar
+                                </a>
+                                <a href="path/to/resume.pdf" target="_blank" class="social-link">
+                                    <i class="fas fa-file-pdf"></i> Resume
+                                </a>
+                            </div>
+                        </div>
+                        <div class="intro-content">
+                            <p>Welcome to my portfolio! I am actively seeking opportunities in robotics with a focus on physics simulation and dextrous manipulation. My research interests include advanced control algorithms, contact-rich simulation, and enabling robots to perform complex manipulation tasks with precision and adaptability. I am passionate about bridging the gap between simulation and real-world robotics applications.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="skills">
+                    <h2>Skills</h2>
+                    <div class="skills-container">
+                        <div class="skill-category">
+                            <h3>Programming Languages</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">MATLAB</span>
+                                <span class="skill-tag">Arduino</span>
+                                <span class="skill-tag">C++</span>
+                                <span class="skill-tag">Bash</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Robotics & Tools</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">ROS</span>
+                                <span class="skill-tag">GazeboSim</span>
+                                <span class="skill-tag">MuJoCo</span>
+                                <span class="skill-tag">NVIDIA Warp</span>
+                                <span class="skill-tag">MPC</span>
+                                <span class="skill-tag">PyTorch</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Design & Manufacturing</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">3D Modeling & Drafting</span>
+                                <span class="skill-tag">Solidworks</span>
+                                <span class="skill-tag">Fusion360</span>
+                                <span class="skill-tag">Cura</span>
+                                <span class="skill-tag">3D Printing</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Soft Skills</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Teamwork</span>
+                                <span class="skill-tag">Communication & Documentation</span>
+                                <span class="skill-tag">Adaptability & Initiative</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="education">
+                    <h2>Education</h2>
+                    <div class="education-item">
+                        <div class="education-logo-section">
+                            <a href="https://www.asu.edu/" target="_blank" rel="noopener noreferrer" class="entity-link">
+                                <img src="images/asu-logo.png" alt="Arizona State University" class="education-logo">
+                            </a>
+                            <a href="https://www.asu.edu/" target="_blank" rel="noopener noreferrer" class="education-logo-name entity-link">Arizona State University</a>
+                        </div>
+                        <div class="education-program">Master of Science: Robotics and Autonomous System</div>
+                        <div class="education-gpa">GPA: 4.00</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-logo-section">
+                            <a href="https://vjti.ac.in/" target="_blank" rel="noopener noreferrer" class="entity-link">
+                                <img src="images/vjti-logo.png" alt="Veermata Jijabai Technological Institute" class="education-logo">
+                            </a>
+                            <a href="https://vjti.ac.in/" target="_blank" rel="noopener noreferrer" class="education-logo-name entity-link">VJTI</a>
+                        </div>
+                        <div class="education-program">Bachelor of Technology: Production Engineering</div>
+                        <div class="education-gpa">CPI: 7.08/10</div>
+                    </div>
+                </section>
+
+                <section id="experience">
+                    <h2>Professional Experience</h2>
+                    <div class="experience-item">
+                        <div class="experience-logo-section">
+                            <a href="https://lycanaerospace.com/" target="_blank" rel="noopener noreferrer" class="entity-link">
+                                <img src="images/lycan-logo.png" alt="Lycan Aerospace" class="experience-logo">
+                            </a>
+                            <a href="https://lycanaerospace.com/" target="_blank" rel="noopener noreferrer" class="experience-logo-name entity-link">Lycan</a>
+                        </div>
+                        <div class="experience-role">
+                            <div class="experience-role-main">
+                                <div class="experience-title">Design Engineer</div>
+                                <div class="experience-company">Lycan Aerospace, Bangalore, Karnataka</div>
+                            </div>
+                            <div class="experience-meta">
+                                <div class="experience-duration">April 2023 - May 2024</div>
+                            </div>
+                            <ul class="experience-description">
+                                <li>Designed structural and payload components for AGROS, a 10L-capacity pesticide-sprayer quadcopter</li>
+                                <li>Created detailed 2D manufacturing drawings and coordinated with suppliers to ensure design intent was met</li>
+                                <li>Collaborated with Systems Integration and Embedded Systems engineers to optimize component layout and mounting</li>
+                                <li>Utilized in-house 3D printers for rapid prototyping and validation of structural parts</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-logo-section">
+                            <a href="https://www.tcs.com/" target="_blank" rel="noopener noreferrer" class="entity-link">
+                                <img src="images/tcs-logo.jpg" alt="Tata Consultancy Services" class="experience-logo">
+                            </a>
+                            <a href="https://www.tcs.com/" target="_blank" rel="noopener noreferrer" class="experience-logo-name entity-link">TCS</a>
+                        </div>
+                        <div class="experience-role">
+                            <div class="experience-role-main">
+                                <div class="experience-title">Systems Engineer</div>
+                                <div class="experience-company">Tata Consultancy Services, Mumbai, Maharashtra</div>
+                            </div>
+                            <div class="experience-meta">
+                                <div class="experience-duration">Oct 2021 - May 2022</div>
+                            </div>
+                            <ul class="experience-description">
+                                <li>Supported migration from legacy mainframe systems to an AWS-based Java environment for a U.S.-based car rental client</li>
+                                <li>Monitored AWS batch processes, generated reconciliation reports, and resolved discrepancies</li>
+                                <li>Assisted senior developers with ticket resolution and process validation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="column right-column">
+                <section id="research">
+                    <h2>Research</h2>
+                    <div class="research-item">
+                        <h3><a href="https://irislab.tech/comfree-sim/" target="_blank" rel="noopener noreferrer">ComFree-Sim: A GPU-Parallelized Analytical Contact Physics Engine for Scalable Contact-Rich Robotics Simulation and Control</a></h3>
+                        <p><strong>Authors:</strong> Chetan Borse, Zhixian Xie, Wei-Cheng Huang, Wanxin Jin</p>
+                        <p><strong>Published:</strong> arXiv:2603.12185 [cs.RO], March 2026</p>
+                        <p><strong>Abstract:</strong> Physics simulation for contact-rich robotics is often bottlenecked by contact resolution. We present ComFree-Sim, a GPU-parallelized analytical contact physics engine built on complementarity-free contact modeling. ComFree-Sim computes contact impulses in closed form via an impedance-style prediction-correction update in the dual cone of Coulomb friction, achieving near-linear scaling with contact density. The engine is implemented in Warp with a MuJoCo-compatible interface, demonstrating 2-3x higher throughput in dense contact scenes with comparable physical fidelity.</p>
+                        <div class="research-video">
+                            <a href="https://irislab.tech/comfree-sim/" target="_blank" rel="noopener noreferrer" class="project-media-link">
+                                <video width="560" height="315" autoplay loop muted>
+                                    <source src="videos/comfree_teaser_sped_up_v2.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Add more research items as needed -->
+                </section>
+
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div id="projects-container">
+                        <div class="project-item">
+                            <div class="project-content">
+                                <h3><a href="https://irislab.tech/comfree-sim#results-tabs-1" target="_blank" rel="noopener noreferrer" class="project-title-link">Sampling Based MPC for Manipulation using ComFree-Sim</a></h3>
+                                <p><strong>Duration:</strong> 2026</p>
+                                <ul>
+                                    <li>Developed sampling-based Model Predictive Control for robot manipulation tasks leveraging GPU-parallelized contact physics engine</li>
+                                    <li>Demonstrated efficient trajectory optimization in contact-rich scenarios using ComFree-Sim</li>
+                                </ul>
+                            </div>
+                            <a href="https://irislab.tech/comfree-sim#results-tabs-1" target="_blank" rel="noopener noreferrer" class="project-media-link">
+                                <video width="400" height="315" autoplay loop muted class="project-image">
+                                    <source src="videos/objects_grid.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-content">
+                                <h3><a href="https://github.com/chetanborse1999/auv_path_planning" target="_blank" rel="noopener noreferrer" class="project-title-link">Path Planning for Autonomous Underwater Vehicle (AUV)</a></h3>
+                                <p><strong>Duration:</strong> March 2025 - May 2025</p>
+                                <ul>
+                                    <li>Simulated AUV navigation in a GPS-denied underwater environment using "UUV Simulator" built in ROS Gazebo</li>
+                                    <li>Implemented A* path planning with LiDAR-based obstacle detection and occupancy grid mapping</li>
+                                    <li>Fused DVL and IMU data for odometry</li>
+                                </ul>
+                            </div>
+                            <a href="https://github.com/chetanborse1999/auv_path_planning" target="_blank" rel="noopener noreferrer" class="project-media-link">
+                                <video width="400" height="315" autoplay loop muted class="project-image">
+                                    <source src="videos/auv.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-content">
+                                <h3><a href="https://github.com/chetanborse1999/multi-robot-debris-detection-mapping" target="_blank" rel="noopener noreferrer" class="project-title-link">Robots Detection using Swarm Robots</a></h3>
+                                <p><strong>Duration:</strong> October 2024 - December 2024</p>
+                                <ul>
+                                    <li>Designed and implemented a decentralized mapping algorithm in MATLAB for multi-robot systems to identify and localize debris in an unexplored domain</li>
+                                    <li>Developed distributed map-sharing techniques enabling agents to collaboratively merge local maps into a unified global debris field map</li>
+                                </ul>
+                            </div>
+                            <a href="https://github.com/chetanborse1999/multi-robot-debris-detection-mapping" target="_blank" rel="noopener noreferrer" class="project-media-link">
+                                <video width="400" height="315" autoplay loop muted class="project-image">
+                                    <source src="videos/multi_robot_systems.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-content">
+                                <h3><a href="https://github.com/kpangaon-GOW/EEE598-RL-Robotics-ExtraCredit" target="_blank" rel="noopener noreferrer" class="project-title-link">Generalizing Object Manipulation using Goal Conditioned Reinforcement Learning</a></h3>
+                                <p><strong>Duration:</strong> 2025</p>
+                                <ul>
+                                    <li>Reproduced the key results from the original ECRL paper.</li>
+                                    <li>Trained policies using a Transformer-based actor-critic architecture with entity-centric representations (Deep Latent Particles).</li>
+                                    <li>Achieved state-of-the-art compositional generalization.</li>
+                                </ul>
+                            </div>
+                            <a href="https://github.com/kpangaon-GOW/EEE598-RL-Robotics-ExtraCredit" target="_blank" rel="noopener noreferrer" class="project-media-link">
+                                <video width="400" height="315" autoplay loop muted class="project-image">
+                                    <source src="videos/ecrl.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                        <div class="project-item hidden-project">
+                            <div class="project-content">
+                                <h3>Enhancing Visuomotor Diffusion Policy with AdaLN-Zero</h3>
+                                <p><strong>Duration:</strong> March 2025 - May 2025</p>
+                                <ul>
+                                    <li>Improved the training stability of diffusion policy networks for robot trajectory generation by integrating Adaptive Layer Normalization Zero (AdaLN-Zero) into Transformer-based architectures</li>
+                                    <li>Addressed training instability and high computational cost in long-horizon visuomotor tasks</li>
+                                </ul>
+                            </div>
+                            <div class="project-media-link">
+                                <video width="400" height="315" autoplay loop muted class="project-image">
+                                    <source src="videos/push_t.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <div class="project-item hidden-project">
+                            <div class="project-content">
+                                <h3><a href="https://github.com/chetanborse1999/Rover-One" target="_blank" rel="noopener noreferrer" class="project-title-link">Rover-One</a></h3>
+                                <p><strong>Duration:</strong> 2025</p>
+                                <ul>
+                                    <li>Designed and built a 6-wheel Rover-One platform based on a rocker-bogie suspension with a differential linkage for stable traversal on uneven terrain.</li>
+                                    <li>Integrated a mechatronics stack with Arduino Mega, L298N motor drivers, MG995 servos, and Johnson drive motors, including remote and serial control pipelines.</li>
+                                    <li>Implemented and validated multiple mobility modes including variable-radius steering, spot turns, and strafing for agile maneuvering.</li>
+                                    <li>Developed Rover-Sim in ROS Noetic and Gazebo 11 with URDF/SDF models, gazebo_ros_control integration, and keyboard teleoperation to test behavior before hardware deployment.</li>
+                                </ul>
+                            </div>
+                            <a href="https://github.com/chetanborse1999/Rover-One" target="_blank" rel="noopener noreferrer" class="project-media-link">
+                                <video width="400" height="315" autoplay loop muted class="project-image">
+                                    <source src="videos/rover_one.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                    </div>
+                    <button id="show-more-btn" class="show-more-btn">Show More Projects</button>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 Chetan Borse. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
