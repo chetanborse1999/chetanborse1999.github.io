@@ -39,59 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modeToggle.textContent = currentMode === 'light' ? '☀️' : '🌙';
     }
 
-    const isMobileView = window.matchMedia('(max-width: 768px)').matches;
-
-    // Left panel section navigation: intro is shown by default, button picks one more section
-    const panelToggleBtn = document.getElementById('section-panel-toggle');
-    const sectionPanel = document.getElementById('section-panel');
-    const panelButtons = document.querySelectorAll('.section-nav-btn');
-    const allSections = document.querySelectorAll('main section');
-
-    function showIntroAnd(selectedId) {
-        allSections.forEach(section => {
-            if (section.id === 'intro' || section.id === selectedId) {
-                section.style.display = 'block';
-            } else {
-                section.style.display = 'none';
-            }
-        });
-    }
-
-    function showAllSections() {
-        allSections.forEach(section => {
-            section.style.display = 'block';
-        });
-    }
-
-    if (isMobileView) {
-        // Initial state on mobile: intro only
-        showIntroAnd('intro');
-    } else {
-        // Desktop remains unchanged
-        showAllSections();
-    }
-
-    if (isMobileView && panelToggleBtn && sectionPanel) {
-        panelToggleBtn.addEventListener('click', () => {
-            const isOpen = sectionPanel.classList.toggle('open');
-            panelToggleBtn.setAttribute('aria-expanded', String(isOpen));
-            sectionPanel.setAttribute('aria-hidden', String(!isOpen));
-        });
-    }
-
-    panelButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (!isMobileView) return;
-            const targetId = button.getAttribute('data-target');
-            if (!targetId) return;
-            showIntroAnd(targetId);
-            sectionPanel.classList.remove('open');
-            panelToggleBtn.setAttribute('aria-expanded', 'false');
-            sectionPanel.setAttribute('aria-hidden', 'true');
-            window.scrollTo(0, 0);
-        });
-    });
-
     // Spotify widget collapse/expand functionality
     const spotifyWidget = document.getElementById('spotify-widget');
     const spotifyHeader = document.getElementById('spotify-widget-header');
@@ -117,42 +64,36 @@ document.addEventListener('DOMContentLoaded', function() {
         spotifyCollapseBtn.textContent = spotifyWidget.classList.contains('collapsed') ? '+' : '−';
     }
 
-    if (isMobileView) {
-        spotifyWidget.classList.add('collapsed');
-    }
-
     // Initialize button text
     updateButtonText();
 
-    if (!isMobileView) {
-        // Auto-collapse the widget after 4 seconds on page load
-        collapseTimeout = setTimeout(() => {
-            if (!mouseOverWidget) {
-                spotifyWidget.classList.add('collapsed');
-                updateButtonText();
-            }
-        }, 4000);
+    // Auto-collapse the widget after 4 seconds on page load
+    collapseTimeout = setTimeout(() => {
+        if (!mouseOverWidget) {
+            spotifyWidget.classList.add('collapsed');
+            updateButtonText();
+        }
+    }, 4000);
 
-        // Mouse enter: pause collapse
-        spotifyWidget.addEventListener('mouseenter', () => {
-            mouseOverWidget = true;
-            clearTimeout(collapseTimeout);
-        });
+    // Mouse enter: pause collapse
+    spotifyWidget.addEventListener('mouseenter', () => {
+        mouseOverWidget = true;
+        clearTimeout(collapseTimeout);
+    });
 
-        // Mouse leave: resume collapse countdown
-        spotifyWidget.addEventListener('mouseleave', () => {
-            mouseOverWidget = false;
-            if (!spotifyWidget.classList.contains('collapsed')) {
-                setCollapseTimeout(2000);
-            }
-        });
-    }
+    // Mouse leave: resume collapse countdown
+    spotifyWidget.addEventListener('mouseleave', () => {
+        mouseOverWidget = false;
+        if (!spotifyWidget.classList.contains('collapsed')) {
+            setCollapseTimeout(2000);
+        }
+    });
 
     // Toggle collapse on header click
     spotifyHeader.addEventListener('click', () => {
         spotifyWidget.classList.toggle('collapsed');
         updateButtonText();
-        if (!isMobileView && !spotifyWidget.classList.contains('collapsed') && !mouseOverWidget) {
+        if (!spotifyWidget.classList.contains('collapsed') && !mouseOverWidget) {
             setCollapseTimeout(2000);
         }
     });
@@ -161,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.stopPropagation();
         spotifyWidget.classList.toggle('collapsed');
         updateButtonText();
-        if (!isMobileView && !spotifyWidget.classList.contains('collapsed') && !mouseOverWidget) {
+        if (!spotifyWidget.classList.contains('collapsed') && !mouseOverWidget) {
             setCollapseTimeout(2000);
         }
     });
