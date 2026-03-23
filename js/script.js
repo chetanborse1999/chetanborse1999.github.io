@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modeToggle.textContent = currentMode === 'light' ? '☀️' : '🌙';
     }
 
+    /* Spotify feature disabled
     // Spotify widget collapse/expand functionality
     const spotifyWidget = document.getElementById('spotify-widget');
     const spotifyHeader = document.getElementById('spotify-widget-header');
@@ -106,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setCollapseTimeout(2000);
         }
     });
+    */
 
     // Show More Projects functionality
     const showMoreBtn = document.getElementById('show-more-btn');
