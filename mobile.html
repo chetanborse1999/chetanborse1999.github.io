@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chetan Borse | Mobile Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7F2711;
+            --secondary-color: #eab308;
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --section-bg: #fff;
+            --surface-color: #fff;
+            --header-bg: #333;
+            --border-color: #7F2711;
+            --link-color: #7F2711;
+            --muted: #555;
+        }
+
+        body.dark-mode {
+            --primary-color: #d9534f;
+            --secondary-color: #fcd34d;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --section-bg: #1e1e1e;
+            --surface-color: #242424;
+            --header-bg: #1a1a1a;
+            --border-color: #fcd34d;
+            --link-color: #fcd34d;
+            --muted: #bdbdbd;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            min-height: 100vh;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: var(--header-bg);
+            border-bottom: 3px solid var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            color: #fff;
+        }
+
+        .menu-btn {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .brand {
+            margin: 0;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.32);
+            backdrop-filter: blur(1px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 1090;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: min(78vw, 300px);
+            height: 100vh;
+            background: var(--section-bg);
+            border-right: 2px solid var(--border-color);
+            transform: translateX(-102%);
+            transition: transform 0.24s ease;
+            z-index: 1100;
+            box-shadow: 10px 0 22px rgba(0, 0, 0, 0.18);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px;
+            background: var(--header-bg);
+            color: #fff;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .sidebar-title {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .close-btn {
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .menu-links {
+            display: grid;
+            gap: 8px;
+            padding: 12px;
+            margin: 0;
+            list-style: none;
+        }
+
+        .menu-link {
+            display: block;
+            text-decoration: none;
+            color: var(--text-color);
+            border: 1px solid rgba(127, 39, 17, 0.3);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-weight: 600;
+            background: var(--surface-color);
+        }
+
+        .menu-link:active {
+            transform: scale(0.99);
+        }
+
+        .menu-link.active {
+            border-color: var(--primary-color);
+            background: rgba(234, 179, 8, 0.12);
+            color: var(--primary-color);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 12px;
+            border-top: 1px solid rgba(127, 39, 17, 0.25);
+            background: var(--section-bg);
+        }
+
+        .theme-toggle-btn {
+            width: 100%;
+            border: 1px solid rgba(127, 39, 17, 0.35);
+            border-radius: 10px;
+            background: rgba(234, 179, 8, 0.12);
+            color: var(--text-color);
+            min-height: 42px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .theme-toggle-btn i {
+            color: var(--primary-color);
+        }
+
+        .main {
+            width: min(780px, 100%);
+            margin: 0 auto;
+            padding: 14px;
+        }
+
+        .profile {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid rgba(127, 39, 17, 0.25);
+            border-radius: 14px;
+            background: var(--section-bg);
+            margin-bottom: 12px;
+        }
+
+        .photo {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(127, 39, 17, 0.5);
+        }
+
+        .profile h1 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .profile p {
+            margin: 3px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .accordion-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        #intro { order: 1; }
+        #research { order: 2; }
+        #projects { order: 3; }
+        #skills { order: 4; }
+        #education { order: 5; }
+        #experience { order: 6; }
+
+        .accordion-item {
+            border: 1px solid rgba(127, 39, 17, 0.28);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--section-bg);
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            border: none;
+            background: var(--surface-color);
+            color: var(--text-color);
+            padding: 12px 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .accordion-item.open .accordion-trigger {
+            background: rgba(234, 179, 8, 0.12);
+            color: var(--primary-color);
+            border-bottom: 1px solid rgba(127, 39, 17, 0.25);
+        }
+
+        .chev {
+            transition: transform 0.2s ease;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .accordion-item.open .chev {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 12px;
+        }
+
+        .accordion-item.open .accordion-content {
+            display: block;
+        }
+
+        .sub-card {
+            padding: 10px;
+            border: 1px solid rgba(127, 39, 17, 0.18);
+            border-radius: 10px;
+            background: var(--surface-color);
+            margin-bottom: 8px;
+        }
+
+        .sub-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .sub-card h3 {
+            margin: 0 0 3px;
+            font-size: 0.96rem;
+            color: var(--primary-color);
+        }
+
+        .sub-card p,
+        .sub-card li {
+            margin: 0;
+            font-size: 0.92rem;
+        }
+
+        .sub-card p + p {
+            margin-top: 8px;
+        }
+
+        .sub-card ul {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 4px;
+        }
+
+        .links {
+            display: grid;
+            gap: 8px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid rgba(127, 39, 17, 0.3);
+            border-radius: 10px;
+            padding: 9px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 700;
+            background: rgba(234, 179, 8, 0.08);
+        }
+
+        .video-wrap {
+            margin-top: 10px;
+            border: 1px solid rgba(127, 39, 17, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .video-wrap video {
+            width: 100%;
+            display: block;
+            max-height: 260px;
+            background: #000;
+        }
+
+        .video-caption {
+            padding: 8px 10px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            background: var(--surface-color);
+            border-top: 1px solid rgba(127, 39, 17, 0.2);
+        }
+
+        footer {
+            margin-top: 14px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.84rem;
+            padding-bottom: 8px;
+        }
+
+        body.menu-open .sidebar {
+            transform: translateX(0);
+        }
+
+        body.menu-open .sidebar-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <button id="open-menu" class="menu-btn" type="button" aria-label="Open section menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="brand">CHETAN BORSE</h1>
+    </header>
+
+    <aside id="section-sidebar" class="sidebar" aria-label="Section menu">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Sections</h2>
+            <button id="close-menu" class="close-btn" type="button" aria-label="Close section menu">×</button>
+        </div>
+        <ul class="menu-links">
+            <li><a href="#intro" class="menu-link active" data-target="intro">Intro</a></li>
+            <li><a href="#research" class="menu-link" data-target="research">Research</a></li>
+            <li><a href="#projects" class="menu-link" data-target="projects">Projects</a></li>
+            <li><a href="#skills" class="menu-link" data-target="skills">Skills</a></li>
+            <li><a href="#education" class="menu-link" data-target="education">Education</a></li>
+            <li><a href="#experience" class="menu-link" data-target="experience">Experience</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode">
+                <i id="theme-toggle-icon" class="fas fa-moon"></i>
+                <span id="theme-toggle-label">Dark Mode</span>
+            </button>
+        </div>
+    </aside>
+
+    <div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+    <main class="main">
+        <section class="profile">
+            <img src="images/photo.png" alt="Chetan Borse" class="photo">
+            <div>
+                <h1>Chetan Borse</h1>
+                <p>Robotics · Physics Simulation · Dexterous Manipulation</p>
+            </div>
+        </section>
+
+        <section class="accordion-list">
+            <article class="accordion-item open" id="intro" data-section="intro">
+                <button class="accordion-trigger" type="button">
+                    <span>Intro</span>
+                    <i class="fas fa-chevron-down chev"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="sub-card">
+                        <p>Welcome to my portfolio. I am actively seeking opportunities in robotics with a focus on physics simulation and dextrous manipulation. I am interested in contact-rich simulation, advanced control, and building reliable real-world robotic systems.</p>
+                    </div>
+                    <div class="links">
+                        <a href="/files/Chetan_Borse_Resume.pdf" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fas fa-file-pdf"></i> Resume</a>
+                        <a href="https://linkedin.com/in/chetanborse1999" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://github.com/chetanborse1999" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&hl=en&user=rGBt9IkAAAAJ&authuser=1" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fas fa-book"></i> Google Scholar</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="accordion-item" id="skills" data-section="skills">
+                <button class="accordion-trigger" type="button">
+                    <span>Skills</span>
+                    <i class="fas fa-chevron-down chev"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="sub-card">
+                        <h3>Programming</h3>
+                        <p>Python, MATLAB, Arduino, C++, Bash</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Robotics & Tools</h3>
+                        <p>ROS, GazeboSim, MuJoCo, NVIDIA Warp, MPC, PyTorch</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Design & Manufacturing</h3>
+                        <p>3D Modeling, Solidworks, Fusion360, Cura, 3D Printing</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="accordion-item" id="education" data-section="education">
+                <button class="accordion-trigger" type="button">
+                    <span>Education</span>
+                    <i class="fas fa-chevron-down chev"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="sub-card">
+                        <h3>Arizona State University</h3>
+                        <p>Master of Science: Robotics and Autonomous System · GPA: 4.00</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>VJTI</h3>
+                        <p>Bachelor of Technology: Production Engineering · CPI: 7.08/10</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="accordion-item" id="experience" data-section="experience">
+                <button class="accordion-trigger" type="button">
+                    <span>Experience</span>
+                    <i class="fas fa-chevron-down chev"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="sub-card">
+                        <h3>Design Engineer · Lycan Aerospace</h3>
+                        <p>April 2023 - May 2024</p>
+                        <ul>
+                            <li>Designed structural and payload components for AGROS quadcopter.</li>
+                            <li>Created 2D manufacturing drawings and coordinated with suppliers.</li>
+                            <li>Worked with systems and embedded teams on integration.</li>
+                        </ul>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Systems Engineer · TCS</h3>
+                        <p>Oct 2021 - May 2022</p>
+                        <ul>
+                            <li>Supported migration from legacy mainframe to AWS-based Java environment.</li>
+                            <li>Monitored AWS batch jobs and reconciliation reporting.</li>
+                            <li>Assisted senior developers with ticket validation and fixes.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="accordion-item" id="research" data-section="research">
+                <button class="accordion-trigger" type="button">
+                    <span>Research</span>
+                    <i class="fas fa-chevron-down chev"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="sub-card">
+                        <h3>ComFree-Sim</h3>
+                        <p>ComFree-Sim is a GPU-parallelized analytical contact physics engine for scalable contact-rich robotics simulation and control. The method uses a complementarity-free formulation and a prediction-correction update in the dual cone of Coulomb friction.</p>
+                        <p>In dense contact scenes, the engine delivers significantly higher throughput while preserving stable contact behavior for manipulation and control loops, making it practical for fast policy evaluation and MPC rollouts.</p>
+                        <ul>
+                            <li>Designed for parallel execution with NVIDIA Warp.</li>
+                            <li>Maintains a MuJoCo-compatible interface for easier adoption.</li>
+                            <li>Targets high-contact tasks like pushing, grasping, and clutter interaction.</li>
+                        </ul>
+                        <div class="video-wrap">
+                            <video controls playsinline preload="metadata" poster="images/teaser.png">
+                                <source src="videos/comfree_teaser_sped_up_v2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-caption">Research teaser: ComFree-Sim contact-rich manipulation scenarios.</div>
+                        </div>
+                        <p><a href="https://irislab.tech/comfree-sim/" target="_blank" rel="noopener noreferrer" class="social-link">Open Research Page</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="accordion-item" id="projects" data-section="projects">
+                <button class="accordion-trigger" type="button">
+                    <span>Projects</span>
+                    <i class="fas fa-chevron-down chev"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="sub-card">
+                        <h3>Sampling Based MPC for Manipulation</h3>
+                        <p>Developed a sampling-based MPC pipeline for contact-rich manipulation using fast parallel rollouts. The controller evaluates thousands of trajectory candidates and selects action sequences that satisfy contact stability and task completion constraints.</p>
+                        <p>Integrated with ComFree-Sim to improve rollout speed under frictional contact, enabling more frequent replanning and better robustness against disturbances.</p>
+                        <div class="video-wrap">
+                            <video controls playsinline preload="metadata" poster="images/sampling_based_mpc.png">
+                                <source src="videos/objects_grid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-caption">MPC manipulation benchmark: multi-object contact interactions.</div>
+                        </div>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Path Planning for AUV</h3>
+                        <p>Implemented a 2D planning and navigation stack for autonomous underwater vehicles with A* based global planning and local obstacle handling. Combined DVL and IMU data streams to improve dead-reckoning accuracy in low-visibility conditions.</p>
+                        <p>Validated planning behavior in complex environments with static and dynamic obstacles and tuned recovery behavior for narrow corridors.</p>
+                        <div class="video-wrap">
+                            <video controls playsinline preload="metadata" poster="images/auv.png">
+                                <source src="videos/auv.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-caption">AUV mission playback: waypoint tracking and obstacle avoidance.</div>
+                        </div>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Debris Detection using Swarm Robots</h3>
+                        <p>Built decentralized map-sharing and debris localization algorithms for multi-robot teams. Each agent performs local detection and periodically fuses global occupancy updates for collaborative coverage.</p>
+                        <p>The system focuses on scalable coordination with low communication overhead and reliable identification of debris hotspots.</p>
+                        <div class="video-wrap">
+                            <video controls playsinline preload="metadata" poster="images/multi_robot_systems.png">
+                                <source src="videos/multi_robot_systems.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-caption">Swarm demo: cooperative exploration and debris mapping.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <footer>
+            Prefer full layout? <a href="/index.html">Open desktop site</a><br>
+            &copy; 2026 Chetan Borse. All rights reserved.
+        </footer>
+    </main>
+
+    <script>
+        (function () {
+            const body = document.body;
+            const openBtn = document.getElementById('open-menu');
+            const closeBtn = document.getElementById('close-menu');
+            const overlay = document.getElementById('sidebar-overlay');
+            const menuLinks = Array.from(document.querySelectorAll('.menu-link'));
+            const accordionItems = Array.from(document.querySelectorAll('.accordion-item'));
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleLabel = document.getElementById('theme-toggle-label');
+            const themeToggleIcon = document.getElementById('theme-toggle-icon');
+
+            function applyTheme(mode) {
+                const isDark = mode === 'dark';
+                body.classList.toggle('dark-mode', isDark);
+                if (themeToggleLabel) {
+                    themeToggleLabel.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+                }
+                if (themeToggleIcon) {
+                    themeToggleIcon.classList.toggle('fa-moon', !isDark);
+                    themeToggleIcon.classList.toggle('fa-sun', isDark);
+                }
+                localStorage.setItem('mobileTheme', isDark ? 'dark' : 'light');
+            }
+
+            function openMenu() {
+                body.classList.add('menu-open');
+            }
+
+            function closeMenu() {
+                body.classList.remove('menu-open');
+            }
+
+            function openSection(targetId) {
+                accordionItems.forEach((item) => {
+                    item.classList.toggle('open', item.id === targetId);
+                });
+
+                menuLinks.forEach((link) => {
+                    link.classList.toggle('active', link.dataset.target === targetId);
+                });
+
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            openBtn.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
+
+            document.querySelectorAll('.accordion-trigger').forEach((trigger) => {
+                trigger.addEventListener('click', () => {
+                    const parent = trigger.closest('.accordion-item');
+                    if (!parent) {
+                        return;
+                    }
+                    openSection(parent.id);
+                });
+            });
+
+            menuLinks.forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetId = link.dataset.target;
+                    if (targetId) {
+                        openSection(targetId);
+                    }
+                    closeMenu();
+                });
+            });
+
+            themeToggle.addEventListener('click', () => {
+                applyTheme(body.classList.contains('dark-mode') ? 'light' : 'dark');
+            });
+
+            const savedTheme = localStorage.getItem('mobileTheme');
+            applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+
+            openSection('intro');
+        })();
+    </script>
+</body>
+</html>

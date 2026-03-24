@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            if (window.location.pathname.endsWith('/mobile.html')) {
+                return;
+            }
+
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            const isPhoneByUA = /iPhone|Android.+Mobile|Windows Phone|BlackBerry|Opera Mini|IEMobile/i.test(ua);
+            const isNarrowTouchDevice = window.matchMedia('(max-width: 768px)').matches && window.matchMedia('(pointer: coarse)').matches;
+            const isPhone = isPhoneByUA || isNarrowTouchDevice;
+
+            if (isPhone) {
+                window.location.replace('/mobile.html');
+            }
+        })();
+    </script>
     <title>Chetan Borse</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
