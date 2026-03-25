@@ -29,7 +29,7 @@ My interests include advanced control, contact-rich simulation, and bridging sim
 - Developed sampling-based MPC for contact-rich manipulation with GPU-parallelized contact physics.
 - Demonstrated efficient trajectory optimization in dense-contact scenarios.
 
-### [Generalizing Object Manipulation using Goal Conditioned Reinforcement Learning](https://github.com/kpangaon-GOW/EEE598-RL-Robotics-ExtraCredit)
+### [Generalizing Object Manipulation using Goal Conditioned Reinforcement Learning](https://github.com/kpangaon-GOW/EEE598-RL-Robotics-ExtraCredit#eee598-reinforcement-learning-in-robotics---extra-credit)
 
 - October 2025 - December 2025
 - Reproduced key ECRL results with a Transformer-based actor-critic architecture.
