@@ -41,19 +41,19 @@ My interests include advanced control, contact-rich simulation, and bridging sim
 - Improved diffusion policy training stability with AdaLN-Zero in Transformer-based architectures.
 - Addressed long-horizon visuomotor instability and computational cost.
 
-### [Debris Detection using Swarm Robots](https://github.com/chetanborse1999/multi-robot-debris-detection-mapping)
+### [Debris Detection using Swarm Robots](https://github.com/chetanborse1999/multi-robot-debris-detection-mapping#multi-robot-systems-final-project-debris-detection-using-swarm-robots)
 
 - October 2024 - December 2024
 - Designed a decentralized mapping algorithm for multi-robot debris localization.
 - Built distributed map-sharing to merge local maps into a global debris field.
 
-### [Rover-One](https://github.com/chetanborse1999/Rover-One)
+### [Rover-One](https://github.com/chetanborse1999/Rover-One#rover-one)
 
 - January 2022 - April 2022
 - Built a 6-wheel rocker-bogie rover with integrated mechatronics and control stack.
 - Developed a ROS Noetic + Gazebo simulation for pre-hardware validation.
 
-### [Path Planning for Autonomous Underwater Vehicle (AUV)](https://github.com/chetanborse1999/auv_path_planning)
+### [Path Planning for Autonomous Underwater Vehicle (AUV)](https://github.com/chetanborse1999/auv_path_planning#path-planning-of-auv-using-rosgazebouuv_simulator)
 
 - March 2025 - May 2025
 - Simulated GPS-denied AUV navigation in ROS Gazebo.
