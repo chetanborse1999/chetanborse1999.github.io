@@ -103,7 +103,6 @@
         #research { order: 2; }
         #projects { order: 3; }
         #skills { order: 4; }
-        #education { order: 5; }
         #experience { order: 6; }
 
         .accordion-item {
@@ -262,7 +261,8 @@
                 </button>
                 <div class="accordion-content">
                     <div class="sub-card">
-                        <p>Welcome to my portfolio. I am actively seeking opportunities in robotics with a focus on physics simulation and dextrous manipulation. I am interested in contact-rich simulation, advanced control, and building reliable real-world robotic systems.</p>
+                        <p>Welcome to my portfolio! I am pursuing an MS in Robotics and Autonomous Systems (Mechanical & Aerospace Engineering concentration) at Arizona State University, working with Dr. Wanxin Jin at <a href="https://irislab.tech/" target="_blank" rel="noopener noreferrer">Intelligent Robotics and Interactive Systems (IRIS) Lab</a>.</p>
+                        <p>My interests include advanced control, contact-rich simulation, and bridging sim-to-real robotic manipulation. I am actively seeking robotics opportunities focused on physics simulation and dextrous manipulation.</p>
                     </div>
                     <div class="links">
                         <a href="/files/Chetan_Borse_Resume.pdf" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fas fa-file-pdf"></i> Resume</a>
@@ -294,23 +294,6 @@
                 </div>
             </article>
 
-            <article class="accordion-item" id="education" data-section="education">
-                <button class="accordion-trigger" type="button">
-                    <span>Education</span>
-                    <i class="fas fa-chevron-down chev"></i>
-                </button>
-                <div class="accordion-content">
-                    <div class="sub-card">
-                        <h3>Arizona State University</h3>
-                        <p>Master of Science: Robotics and Autonomous System · GPA: 4.00</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>VJTI</h3>
-                        <p>Bachelor of Technology: Production Engineering · CPI: 7.08/10</p>
-                    </div>
-                </div>
-            </article>
-
             <article class="accordion-item" id="experience" data-section="experience">
                 <button class="accordion-trigger" type="button">
                     <span>Experience</span>
@@ -318,21 +301,19 @@
                 </button>
                 <div class="accordion-content">
                     <div class="sub-card">
-                        <h3>Design Engineer · Lycan Aerospace</h3>
+                        <h3>Design Engineer · Lycan Aerospace, Bangalore, Karnataka</h3>
                         <p>April 2023 - May 2024</p>
                         <ul>
-                            <li>Designed structural and payload components for AGROS quadcopter.</li>
-                            <li>Created 2D manufacturing drawings and coordinated with suppliers.</li>
-                            <li>Worked with systems and embedded teams on integration.</li>
+                            <li>Led 3D modelling and layout optimization of structural components with systems and embedded teams.</li>
+                            <li>Produced manufacturing drawings and coordinated supplier-ready fabrication and fit checks.</li>
                         </ul>
                     </div>
                     <div class="sub-card">
-                        <h3>Systems Engineer · TCS</h3>
+                        <h3>Systems Engineer · Tata Consultancy Services, Mumbai, Maharashtra</h3>
                         <p>Oct 2021 - May 2022</p>
                         <ul>
-                            <li>Supported migration from legacy mainframe to AWS-based Java environment.</li>
-                            <li>Monitored AWS batch jobs and reconciliation reporting.</li>
-                            <li>Assisted senior developers with ticket validation and fixes.</li>
+                            <li>Supported migration from legacy mainframe workflows to an AWS-based Java stack.</li>
+                            <li>Monitored batch jobs, generated reconciliation reports, and resolved data mismatches.</li>
                         </ul>
                     </div>
                 </div>
@@ -420,13 +401,13 @@
         (function () {
             const accordionItems = Array.from(document.querySelectorAll('.accordion-item'));
 
-            function openSection(targetId) {
+            function openSection(targetId, shouldScroll = true) {
                 accordionItems.forEach((item) => {
                     item.classList.toggle('open', item.id === targetId);
                 });
 
                 const target = document.getElementById(targetId);
-                if (target) {
+                if (shouldScroll && target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
@@ -447,7 +428,8 @@
                 });
             });
 
-            openSection('intro');
+            openSection('intro', false);
+            window.scrollTo(0, 0);
         })();
     </script>
 </body>
