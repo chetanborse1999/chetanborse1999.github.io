@@ -1,44 +1,4 @@
-// Theme and mode toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const modeToggle = document.getElementById('mode-toggle');
-    const body = document.body;
-
-    // Define theme - only indigo + gold
-    const currentTheme = 'indigo';
-
-    // Get saved preferences from localStorage
-    let currentMode = localStorage.getItem('mode') || 'light';
-
-    // Apply saved preferences on page load
-    applyTheme(currentTheme);
-    applyMode(currentMode);
-    updateButtonLabels();
-
-    // Mode toggle button
-    modeToggle.addEventListener('click', function() {
-        currentMode = currentMode === 'light' ? 'dark' : 'light';
-        applyMode(currentMode);
-        updateButtonLabels();
-    });
-
-    // Apply theme to body
-    function applyTheme(theme) {
-        body.className = body.className.replace(/\b(blue|teal|indigo)\b/g, '').trim();
-        body.classList.add(theme);
-    }
-
-    // Apply mode to body
-    function applyMode(mode) {
-        body.className = body.className.replace(/\b(light|dark)\b/g, '').trim();
-        body.classList.add(mode);
-        localStorage.setItem('mode', mode);
-    }
-
-    // Update button labels
-    function updateButtonLabels() {
-        modeToggle.textContent = currentMode === 'light' ? '☀️' : '🌙';
-    }
-
     /* Spotify feature disabled
     // Spotify widget collapse/expand functionality
     const spotifyWidget = document.getElementById('spotify-widget');
@@ -128,6 +88,52 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Update button text
             showMoreBtn.textContent = allProjectsVisible ? 'Show Less Projects' : 'Show More Projects';
+        });
+    }
+
+    const comfreeModalTrigger = document.getElementById('comfree-modal-trigger');
+    const comfreeModal = document.getElementById('comfree-modal');
+    const comfreeModalClose = document.getElementById('comfree-modal-close');
+    const comfreeModalVideo = document.getElementById('comfree-modal-video');
+
+    function openComfreeModal() {
+        if (!comfreeModal || !comfreeModalVideo) {
+            return;
+        }
+
+        comfreeModal.classList.add('open');
+        comfreeModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        comfreeModalVideo.currentTime = 0;
+        comfreeModalVideo.play().catch(() => {});
+    }
+
+    function closeComfreeModal() {
+        if (!comfreeModal || !comfreeModalVideo) {
+            return;
+        }
+
+        comfreeModal.classList.remove('open');
+        comfreeModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        comfreeModalVideo.pause();
+        comfreeModalVideo.currentTime = 0;
+    }
+
+    if (comfreeModalTrigger && comfreeModal && comfreeModalClose && comfreeModalVideo) {
+        comfreeModalTrigger.addEventListener('click', openComfreeModal);
+        comfreeModalClose.addEventListener('click', closeComfreeModal);
+
+        comfreeModal.addEventListener('click', function(event) {
+            if (event.target === comfreeModal) {
+                closeComfreeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && comfreeModal.classList.contains('open')) {
+                closeComfreeModal();
+            }
         });
     }
 
