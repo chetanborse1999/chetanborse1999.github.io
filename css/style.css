@@ -652,7 +652,7 @@ footer {
 .skills-container {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
 }
 
 .skill-category {
@@ -664,9 +664,9 @@ footer {
 }
 
 .skill-category h3 {
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     color: var(--primary-color);
-    font-size: 18px;
+    font-size: 20px;
     border-left: none;
     padding-left: 0;
 }
@@ -681,8 +681,10 @@ footer {
     background: transparent;
     color: var(--text-color);
     border-radius: 0;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 400;
+    line-height: 1.75;
+    word-spacing: 5px;
     transition: none;
 }
 
