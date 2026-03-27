@@ -206,6 +206,14 @@
             background: rgba(0, 0, 0, 0.04);
         }
 
+        .inline-paper-link,
+        .inline-paper-link:hover,
+        .inline-paper-link:focus-visible {
+            color: #1a0dab;
+            text-decoration: underline;
+            text-decoration-color: currentColor;
+        }
+
         .video-wrap {
             margin-top: 10px;
             border: 1px solid rgba(0, 0, 0, 0.25);
@@ -227,6 +235,30 @@
             color: var(--muted);
             background: var(--surface-color);
             border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .projects-list .project-card.hidden-project {
+            display: none;
+        }
+
+        .projects-list .project-card.hidden-project.visible {
+            display: block;
+        }
+
+        .mobile-show-more-btn {
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-top: 8px;
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .mobile-show-more-btn.hide {
+            display: none;
         }
 
         footer {
@@ -281,14 +313,14 @@
                 <div class="accordion-content">
                     <div class="sub-card">
                         <h3>Simulation &amp; Frameworks</h3>
-                        <p>GazeboSim, MuJoCo, MuJoCo-Warp, ROS, NVIDIA Warp, PyTorch</p>
+                        <p>MuJoCo, MuJoCo-Warp, GazeboSim, ROS, NVIDIA Warp, PyTorch</p>
                     </div>
                     <div class="sub-card">
                         <h3>Programming</h3>
                         <p>Python, MATLAB, C++, Bash, Arduino</p>
                     </div>
                     <div class="sub-card">
-                        <h3>Hardware</h3>
+                        <h3>Robot Hardware</h3>
                         <p>LEAP Hand, Wonik Allegro Hand, Franka Emika Panda</p>
                     </div>
                     <div class="sub-card">
@@ -335,7 +367,7 @@
                         <p>In dense contact scenes, the engine delivers significantly higher throughput while preserving stable contact behavior for manipulation and control loops, making it practical for fast policy evaluation and MPC rollouts.</p>
                         <ul>
                             <li>Designed for parallel execution with NVIDIA Warp.</li>
-                            <li>Maintains a MuJoCo-compatible interface for easier adoption.</li>
+                            <li>Delivered 2-3X throughput compared to MuJoCo-Warp in dense-contact scenes while maintaining stable contact behavior.</li>
                             <li>Targets high-contact tasks like pushing, grasping, and clutter interaction.</li>
                         </ul>
                         <div class="video-wrap">
@@ -355,11 +387,14 @@
                     <span>Projects</span>
                     <i class="fas fa-chevron-down chev"></i>
                 </button>
-                <div class="accordion-content">
-                    <div class="sub-card">
-                        <h3>Sampling Based MPC for Manipulation</h3>
-                        <p>Developed a sampling-based MPC pipeline for contact-rich manipulation using fast parallel rollouts. The controller evaluates thousands of trajectory candidates and selects action sequences that satisfy contact stability and task completion constraints.</p>
-                        <p>Integrated with ComFree-Sim to improve rollout speed under frictional contact, enabling more frequent replanning and better robustness against disturbances.</p>
+                <div class="accordion-content projects-list">
+                    <div class="sub-card project-card">
+                        <h3>Sampling Based MPC for Manipulation using ComFree-Sim</h3>
+                        <p>December 2025 - February 2026</p>
+                        <ul>
+                            <li>Developed sampling-based Model Predictive Control for robot manipulation tasks leveraging GPU-parallelized contact physics engine.</li>
+                            <li>Demonstrated efficient trajectory optimization in contact-rich scenarios using ComFree-Sim.</li>
+                        </ul>
                         <div class="video-wrap">
                             <video controls playsinline preload="metadata" poster="images/sampling_based_mpc.png">
                                 <source src="videos/objects_grid.mp4" type="video/mp4">
@@ -368,22 +403,44 @@
                             <div class="video-caption">MPC manipulation benchmark: multi-object contact interactions.</div>
                         </div>
                     </div>
-                    <div class="sub-card">
-                        <h3>Path Planning for AUV</h3>
-                        <p>Implemented a 2D planning and navigation stack for autonomous underwater vehicles with A* based global planning and local obstacle handling. Combined DVL and IMU data streams to improve dead-reckoning accuracy in low-visibility conditions.</p>
-                        <p>Validated planning behavior in complex environments with static and dynamic obstacles and tuned recovery behavior for narrow corridors.</p>
+                    <div class="sub-card project-card">
+                        <h3>Generalizing Object Manipulation using Goal Conditioned Reinforcement Learning</h3>
+                        <p>October 2025 - December 2025</p>
+                        <ul>
+                            <li>Reproduced the key results from the original <a href="https://github.com/kpangaon-GOW/EEE598-RL-Robotics-ExtraCredit#eee598-reinforcement-learning-in-robotics---extra-credit" target="_blank" rel="noopener noreferrer" class="inline-paper-link">ECRL paper</a>.</li>
+                            <li>Trained policies using a Transformer-based actor-critic architecture with entity-centric representations (Deep Latent Particles).</li>
+                            <li>Achieved state-of-the-art compositional generalization.</li>
+                        </ul>
                         <div class="video-wrap">
-                            <video controls playsinline preload="metadata" poster="images/auv.png">
-                                <source src="videos/auv.mp4" type="video/mp4">
+                            <video controls playsinline preload="metadata">
+                                <source src="videos/ecrl.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="video-caption">AUV mission playback: waypoint tracking and obstacle avoidance.</div>
+                            <div class="video-caption">Goal-conditioned RL demo for compositional object manipulation.</div>
                         </div>
                     </div>
-                    <div class="sub-card">
+                    <div class="sub-card project-card">
+                        <h3>Enhancing Visuomotor Diffusion Policy with AdaLN-Zero</h3>
+                        <p>March 2025 - May 2025</p>
+                        <ul>
+                            <li>Improved the training stability of diffusion policy networks for robot trajectory generation by integrating Adaptive Layer Normalization Zero (AdaLN-Zero) into Transformer-based architectures.</li>
+                            <li>Addressed training instability and high computational cost in long-horizon visuomotor tasks.</li>
+                        </ul>
+                        <div class="video-wrap">
+                            <video controls playsinline preload="metadata">
+                                <source src="videos/push_t.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-caption">Diffusion policy rollout with AdaLN-Zero for stable long-horizon control.</div>
+                        </div>
+                    </div>
+                    <div class="sub-card project-card">
                         <h3>Debris Detection using Swarm Robots</h3>
-                        <p>Built decentralized map-sharing and debris localization algorithms for multi-robot teams. Each agent performs local detection and periodically fuses global occupancy updates for collaborative coverage.</p>
-                        <p>The system focuses on scalable coordination with low communication overhead and reliable identification of debris hotspots.</p>
+                        <p>October 2024 - December 2024</p>
+                        <ul>
+                            <li>Designed and implemented a decentralized mapping algorithm in MATLAB for multi-robot systems to identify and localize debris in an unexplored domain.</li>
+                            <li>Developed distributed map-sharing techniques enabling agents to collaboratively merge local maps into a unified global debris field map.</li>
+                        </ul>
                         <div class="video-wrap">
                             <video controls playsinline preload="metadata" poster="images/multi_robot_systems.png">
                                 <source src="videos/multi_robot_systems.mp4" type="video/mp4">
@@ -392,6 +449,38 @@
                             <div class="video-caption">Swarm demo: cooperative exploration and debris mapping.</div>
                         </div>
                     </div>
+                    <div class="sub-card project-card hidden-project">
+                        <h3>Rover-One</h3>
+                        <p>January 2022 - April 2022</p>
+                        <ul>
+                            <li>Designed and built a 6-wheel rocker-bogie rover with differential linkage and integrated mechatronics stack (Arduino Mega, motor drivers, servos, and remote control pipelines).</li>
+                            <li>Implemented and validated multiple mobility modes, then developed a ROS Noetic + Gazebo simulation (URDF/SDF and teleoperation) to test behavior before hardware deployment.</li>
+                        </ul>
+                        <div class="video-wrap">
+                            <video controls playsinline preload="metadata">
+                                <source src="videos/rover_one.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-caption">Rover-One mobility test and simulation playback.</div>
+                        </div>
+                    </div>
+                    <div class="sub-card project-card hidden-project">
+                        <h3>Path Planning for Autonomous Underwater Vehicle (AUV)</h3>
+                        <p>March 2025 - May 2025</p>
+                        <ul>
+                            <li>Simulated AUV navigation in a GPS-denied underwater environment using UUV Simulator built in ROS Gazebo.</li>
+                            <li>Implemented A* path planning with LiDAR-based obstacle detection and occupancy grid mapping.</li>
+                            <li>Fused DVL and IMU data for odometry.</li>
+                        </ul>
+                        <div class="video-wrap">
+                            <video controls playsinline preload="metadata" poster="images/auv.png">
+                                <source src="videos/auv.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-caption">AUV mission playback: waypoint tracking and obstacle avoidance.</div>
+                        </div>
+                    </div>
+                    <button type="button" id="mobile-show-more-projects" class="mobile-show-more-btn">Show More Projects</button>
                 </div>
             </article>
         </section>
@@ -404,6 +493,8 @@
     <script>
         (function () {
             const accordionItems = Array.from(document.querySelectorAll('.accordion-item'));
+            const showMoreProjectsButton = document.getElementById('mobile-show-more-projects');
+            const hiddenProjectCards = Array.from(document.querySelectorAll('#projects .hidden-project'));
 
             function openSection(targetId, shouldScroll = true) {
                 accordionItems.forEach((item) => {
@@ -431,6 +522,15 @@
                     openSection(parent.id);
                 });
             });
+
+            if (showMoreProjectsButton) {
+                showMoreProjectsButton.addEventListener('click', () => {
+                    hiddenProjectCards.forEach((card) => {
+                        card.classList.add('visible');
+                    });
+                    showMoreProjectsButton.classList.add('hide');
+                });
+            }
 
             openSection('intro', false);
             window.scrollTo(0, 0);

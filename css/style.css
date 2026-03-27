@@ -309,6 +309,14 @@ main {
     width: 100%;
 }
 
+.intro-content a,
+.intro-content a:hover,
+.intro-content a:focus-visible {
+    color: #1a0dab;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+}
+
 .profile-photo {
     width: 220px;
     height: 280px;
@@ -518,6 +526,12 @@ main {
 .entity-link {
     color: inherit;
     text-decoration: none;
+}
+
+.experience-logo-name.entity-link,
+.experience-logo-name.entity-link:hover,
+.experience-logo-name.entity-link:focus-visible {
+    color: #1a0dab;
 }
 
 .education-program {
@@ -734,6 +748,14 @@ video {
     flex: 1;
 }
 
+#projects-container .project-item {
+    margin-bottom: 28px;
+}
+
+#projects-container .project-item:last-child {
+    margin-bottom: 0;
+}
+
 .project-item:hover,
 .research-item:hover,
 .activity-item:hover {
@@ -749,13 +771,22 @@ video {
 }
 
 .project-title-link {
-    color: inherit;
+    color: #1a0dab;
     text-decoration: none;
 }
 
-.project-title-link:hover {
-    color: inherit;
+.project-title-link:hover,
+.project-title-link:focus-visible {
+    color: #1a0dab;
     background-color: transparent;
+}
+
+section .project-content a.inline-paper-link,
+section .project-content a.inline-paper-link:hover,
+section .project-content a.inline-paper-link:focus-visible {
+    color: #1a0dab;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
 }
 
 .project-media-link {
